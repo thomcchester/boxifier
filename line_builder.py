@@ -55,19 +55,7 @@ def find_lines(image):
             out_put_array.append([i[0], ranges])
     return out_put_array
 
-#based off what I have so far you can see the lines below:
-# print find_lines(img)
-# print find_lines(np.rot90(img))
-# You can notice some clear issues with this as well, this does not handle cases where the image compression did not
-# make a perfect corner so it comes out looking like this:
-# 0000000000000000
-# 1111111111110000
-# 0000000000011000
-# 0000000000001000
-# 0000000000001000
-# I will have to handle this moving forward in describing squares.
-# I guess though it better to have a MVP than nothing at all.
-
+#this is used to fix and append and remove values that are warped on corner
 def line_maker(image):
     potential_lines = find_lines(image)
     true_lines = []
