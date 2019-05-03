@@ -7,7 +7,6 @@ import square_builder as squab
 import box_interaction as bxin
 import response_checker as resch
 
-img = imread(sys.argv[1])
 
 #here is the final function
 def check_all_boxes(image):
@@ -17,7 +16,10 @@ def check_all_boxes(image):
         for j in box_list[idx+1:]:
             name_one = "box " + str(idx)
             name_two = "box " + str(idx+1)
-            string_list.append(resch.response_for_checks(bxin.check_all_three(i,j),name_one, name_two))
+            response_check = resch.ica_response_checker(bxin.intersect_contain_adjacent(i, j), name_one, name_two)
+            string_list.append(response_check)
     return string_list
 
-print check_all_boxes(img)
+def outputter(image):
+    print("NOTE: Boxes are zero indexed and ordered from top-down then left-right, by upper left most pixel of said box.")
+    print(check_all_boxes(img))
